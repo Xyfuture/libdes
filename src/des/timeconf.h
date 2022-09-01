@@ -38,16 +38,16 @@
 namespace des {
 
 // this is the only thing that should ever be changed in this file
-static const u64 EPSILON_BITS = 4;
+constexpr static const u64 EPSILON_BITS = 4;
 
 // DO NOT EDIT BELOW THIS
 static_assert(EPSILON_BITS > 0 && EPSILON_BITS < 64, "Invalid EPSILON_BITS");
 typedef u64 TimeStep;
-static const u64 TIMESTEP_INV = ~0;
-static const u64 TIMESTEP_BITS = sizeof(TimeStep) * CHAR_BIT;
-static const u64 EPSILON_INV = (1lu << EPSILON_BITS) - 1;
-static const u64 TICK_BITS = TIMESTEP_BITS - EPSILON_BITS;
-static const u64 TICK_INV = (1lu << TICK_BITS) - 1;
+constexpr static const u64 TIMESTEP_INV = ~0;
+constexpr static const u64 TIMESTEP_BITS = sizeof(TimeStep) * CHAR_BIT;
+constexpr static const u64 EPSILON_INV = (1llu << EPSILON_BITS) - 1;
+constexpr static const u64 TICK_BITS = TIMESTEP_BITS - EPSILON_BITS;
+constexpr static const u64 TICK_INV = (1llu << TICK_BITS) - 1;
 
 }  // namespace des
 

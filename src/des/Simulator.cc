@@ -38,13 +38,14 @@
 #include <ratio>   // NOLINT
 #include <thread>  // NOLINT
 #include <utility>
+#include <cstdlib>
 
 #include "des/ActiveComponent.h"
 #include "des/Component.h"
 #include "des/Event.h"
 #include "des/Mapper.h"
 #include "des/Observer.h"
-#include "numa.h"  // NOLINT
+//#include "numa.h"  // NOLINT
 
 namespace des {
 
@@ -93,7 +94,7 @@ Simulator::Simulator() : Simulator(std::thread::hardware_concurrency()) {}
 Simulator::Simulator(u32 _numExecuters)
     : numExecuters_(_numExecuters), logger_(nullptr), mapper_(nullptr) {
   // check numa
-  assert(numa_available() >= 0);
+//  assert(numa_available() >= 0);
 
   // check inputs
   assert(numExecuters_ > 0);
@@ -370,7 +371,8 @@ void Simulator::simulate() {
     u32 slots = 1 + 2 * barrierIterations_;
     for (Simulator::MinTime* array : minTimeArrays) {
       assert(array);
-      numa_free(array, slots * sizeof(Simulator::MinTime));
+//      numa_free(array, slots * sizeof(Simulator::MinTime));
+      free(array);
     }
   }
 
@@ -521,7 +523,8 @@ void Simulator::barrierExecuterInit(
 
   // allocate and initialize the MinTime array for this thread
   const u32 slots = 1 + 2 * barrierIterations_;
-  void* buff = numa_alloc_local(slots * sizeof(Simulator::MinTime));
+//  void* buff = numa_alloc_local(slots * sizeof(Simulator::MinTime));
+  void* buff = std::malloc(slots*sizeof(Simulator::MinTime));
   assert(buff != NULL);
   Simulator::MinTime* minTimeArray = static_cast<Simulator::MinTime*>(buff);
   for (u32 mt = 0; mt < slots; mt++) {

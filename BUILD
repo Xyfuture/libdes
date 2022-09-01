@@ -17,7 +17,7 @@ LINKOPTS = [
 LIBS = [
     "@libprim//:prim",
     "@librnd//:rnd",
-    "@numactl//:numa",
+#    "@numactl//:numa",
     "@zlib//:zlib",
 ]
 
