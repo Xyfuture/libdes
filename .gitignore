@@ -2,3 +2,7 @@ bazel-*
 .clang-format
 cmake-build/
 cmake-local/
+.xmake/
+build/
+.vscode/
+.clion/
