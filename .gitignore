@@ -5,4 +5,4 @@ cmake-local/
 .xmake/
 build/
 .vscode/
-.clion/
+.idea/
