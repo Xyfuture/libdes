@@ -1,7 +1,7 @@
 includes("external.lua")
-add_requires("libprim")
-add_requires("librnd")
-add_requires("zlib 1.2.12")
+add_requires("libprim",{debug=true})
+add_requires("librnd",{debug=true})
+add_requires("zlib 1.2.12",{debug=true})
 
 
 set_config("toolchain","gcc")
